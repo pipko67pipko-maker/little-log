@@ -749,7 +749,7 @@ function renderBaby(){
   var gl=$("growthList");gl.textContent="";
   if(!G.length){var li0=el("li");li0.appendChild(el("p","empty","Add weight, length and head size after each check-up."));gl.appendChild(li0)}
   G.slice(0,4).forEach(function(g){var li=el("li"),r=el("button","row k-growth");r.type="button";var dt=el("span","dot");dt.innerHTML=I.growth;r.appendChild(dt);
-    var tx=el("span","t",[g.w?wt(g.w):"",g.h?len(g.h):"",g.hc?"head "+len(g.hc):""].filter(Boolean).join(" · "));tx.appendChild(el("small",null,age(b.birth,g.d)));if(g.note)tx.appendChild(el("small","nt",g.note));r.appendChild(tx);
+    var tx=el("span","t",[g.w?wt(g.w):"",g.h?len(g.h):""].filter(Boolean).join(" · ")||"Head "+len(g.hc));tx.appendChild(el("small",null,[g.hc&&(g.w||g.h)?"Head "+len(g.hc):"",age(b.birth,g.d)].filter(Boolean).join(" · ")));if(g.note)tx.appendChild(el("small","nt",g.note));r.appendChild(tx);
     r.appendChild(el("span","r num",fmtDay(g.d,{month:"short",day:"numeric"})));r.addEventListener("click",function(){openSheet("growth",g)});li.appendChild(r);gl.appendChild(li)});
   if(G.length>4){var more=el("li");more.appendChild(el("p","note",(G.length-4)+" older measurements"));gl.appendChild(more)}
   var ml=$("mileList");ml.textContent="";var M=mine(state.miles);
